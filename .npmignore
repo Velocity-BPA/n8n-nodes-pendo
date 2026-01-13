@@ -1,0 +1,29 @@
+# Source files
+*.ts
+!*.d.ts
+
+# Config files
+.eslintrc.js
+.prettierrc
+tsconfig.json
+gulpfile.js
+jest.config.js
+
+# Development files
+test/
+scripts/
+coverage/
+.github/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
+*.map
+.env*
