@@ -1,33 +1,25 @@
 {
   "compilerOptions": {
-    "strict": true,
+    "target": "es2019",
     "module": "commonjs",
-    "target": "ES2021",
-    "lib": ["ES2021"],
-    "moduleResolution": "node",
+    "lib": ["es2019"],
+    "outDir": "./dist",
+    "rootDir": "./",
+    "strict": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "outDir": "./dist",
-    "rootDir": "./",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"]
-    },
-    "types": ["node", "jest"]
+    "sourceMap": true
   },
   "include": [
-    "credentials/**/*.ts",
-    "nodes/**/*.ts",
-    "index.ts"
+    "nodes/**/*",
+    "credentials/**/*"
   ],
   "exclude": [
     "node_modules",
-    "dist",
-    "test"
+    "dist"
   ]
 }
