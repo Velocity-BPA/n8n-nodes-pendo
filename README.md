@@ -8,400 +8,220 @@
 >
 > For licensing information, visit https://velobpa.com/licensing or contact licensing@velobpa.com.
 
-A comprehensive n8n community node for Pendo, the product adoption and digital experience platform. This node enables workflow automation for analytics aggregation, guide management, user/account management, segments, pages, features, NPS surveys, reports, webhooks, and feedback collection through Pendo's REST APIs.
+This n8n community node integrates with Pendo's product analytics platform, providing access to 6 core resources including Visitors, Accounts, Guides, Segments, Events, and Features. Automate user behavior tracking, manage product guides, analyze feature adoption, and streamline your product analytics workflows directly within n8n.
 
-![n8n](https://img.shields.io/badge/n8n-community%20node-orange)
+![n8n Community Node](https://img.shields.io/badge/n8n-Community%20Node-blue)
 ![License](https://img.shields.io/badge/license-BSL--1.1-blue)
-![Node Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)
+![Pendo API](https://img.shields.io/badge/Pendo-API%20v1-orange)
+![Product Analytics](https://img.shields.io/badge/Product-Analytics-purple)
+![User Experience](https://img.shields.io/badge/User-Experience-green)
 
 ## Features
 
-- **Analytics Aggregation**: Run custom aggregation queries, time series analysis, page events, feature events, guide events, track events, poll events, visitor activity, and account activity summaries
-- **Visitor Management**: Get, search, list, update, merge, and bulk delete visitors with metadata management, history, and guide interactions
-- **Account Management**: Get, search, list, update, and delete accounts with metadata, visitors, history, and guide interactions
-- **Guide Management**: Create, list, get, update, enable/disable, delete guides, retrieve analytics, and get guide steps
-- **Segment Management**: Create, update, delete, clone segments, get members, size, and associated guides
-- **Track Event Management**: Create, update, delete, search track events with analytics
-- **Page Management**: Create, update, delete tagged pages with analytics and URL matching rules
-- **Feature Management**: Create, update, delete tagged features with analytics and adoption data
-- **NPS Surveys**: Create, update, delete NPS surveys, get responses, analytics, and export data
-- **Reports**: Create, update, delete, run, export, and schedule custom reports
-- **Webhooks**: Create, update, delete, test webhooks and get delivery history
-- **Feedback API Integration**: Create, update, delete feedback requests, manage votes, comments, and status
-- **Webhook Triggers**: React to guide events, poll responses, NPS responses, track events, visitor identification, and segment changes
-- **Multi-Region Support**: Full support for US and EU datacenters
+- **Visitor Management** - Track user behavior, retrieve visitor profiles, and analyze user journey data
+- **Account Operations** - Manage customer accounts, update account metadata, and segment organizations
+- **Guide Automation** - Create, update, and manage in-app guides and onboarding flows
+- **Segmentation Control** - Build dynamic user segments based on behavior and attributes
+- **Event Tracking** - Capture custom events and monitor feature usage patterns
+- **Feature Analytics** - Track feature adoption, usage metrics, and performance insights
+- **Real-time Data** - Access live product analytics data for immediate insights
+- **Batch Operations** - Process multiple records efficiently with bulk operations support
 
 ## Installation
 
 ### Community Nodes (Recommended)
 
-1. Open your n8n instance
-2. Go to **Settings** > **Community Nodes**
-3. Click **Install**
+1. Open n8n
+2. Go to **Settings** → **Community Nodes**
+3. Click **Install a community node**
 4. Enter `n8n-nodes-pendo`
 5. Click **Install**
 
 ### Manual Installation
 
 ```bash
-# Navigate to your n8n installation directory
 cd ~/.n8n
-
-# Install the package
 npm install n8n-nodes-pendo
 ```
 
 ### Development Installation
 
 ```bash
-# Clone the repository
 git clone https://github.com/Velocity-BPA/n8n-nodes-pendo.git
 cd n8n-nodes-pendo
-
-# Install dependencies
 npm install
-
-# Build the project
 npm run build
-
-# Create symlink to n8n custom nodes directory
 mkdir -p ~/.n8n/custom
 ln -s $(pwd) ~/.n8n/custom/n8n-nodes-pendo
-
-# Restart n8n
 n8n start
 ```
 
 ## Credentials Setup
 
-### Creating Pendo API Credentials
-
-1. Log in to your Pendo account
-2. Go to **Settings** > **Integrations**
-3. Create a new **Integration Key**
-4. Copy the integration key
-
-### Configuring in n8n
-
-| Field | Description |
-|-------|-------------|
-| Integration Key | Your Pendo Integration Key (from Settings > Integrations) |
-| Region | Select US or EU datacenter based on your Pendo subscription |
-| Subdomain | Optional: Custom subdomain if applicable |
+| Field | Description | Required |
+|-------|-------------|----------|
+| API Key | Your Pendo API integration key from Pendo Settings > Integrations | Yes |
+| Subscription ID | Your Pendo subscription identifier (found in account settings) | Yes |
+| Environment | Target environment (production/staging) | No |
 
 ## Resources & Operations
 
-### Aggregation
+### 1. Visitors
+
 | Operation | Description |
 |-----------|-------------|
-| Run Aggregation | Execute a custom aggregation query with JSON pipeline |
-| Get Page Events | Retrieve page view events within a date range |
-| Get Feature Events | Retrieve feature click events within a date range |
-| Get Guide Events | Retrieve guide interaction events within a date range |
-| Get Track Events | Retrieve custom track events within a date range |
-| Get Poll Events | Retrieve poll response events within a date range |
-| Get Visitor Activity | Get activity summary for a specific visitor |
-| Get Account Activity | Get activity summary for a specific account |
-| Run Time Series | Execute a time-series aggregation query |
+| Get | Retrieve visitor profile and activity data |
+| List | Fetch multiple visitors with filtering options |
+| Update | Modify visitor metadata and custom attributes |
+| Delete | Remove visitor data from Pendo |
+| Get Events | Retrieve events associated with a visitor |
 
-### Visitor
+### 2. Accounts
+
 | Operation | Description |
 |-----------|-------------|
-| Get | Retrieve a visitor by ID |
-| Get Many | List multiple visitors with optional filters |
-| Search | Search visitors by metadata |
-| Update | Update visitor metadata |
-| Delete | Bulk delete visitors by ID |
-| Get History | Get visitor event history |
-| Get Guide History | Get visitor guide interaction history |
-| Merge | Merge duplicate visitors |
-| Get Accounts | Get accounts associated with a visitor |
+| Get | Fetch account details and associated metadata |
+| List | Retrieve multiple accounts with pagination |
+| Create | Add new account to Pendo tracking |
+| Update | Modify account properties and segmentation data |
+| Delete | Remove account from Pendo system |
 
-### Account
+### 3. Guides
+
 | Operation | Description |
 |-----------|-------------|
-| Get | Retrieve an account by ID |
-| Get Many | List multiple accounts with optional filters |
-| Search | Search accounts by metadata |
-| Update | Update account metadata |
-| Delete | Delete an account |
-| Bulk Delete | Batch delete multiple accounts |
-| Get Visitors | Get visitors in an account |
-| Get History | Get account event history |
-| Get Guide History | Get account guide interaction history |
+| Get | Retrieve guide configuration and performance data |
+| List | Fetch all guides with filtering by status or type |
+| Create | Build new in-app guides and onboarding flows |
+| Update | Modify guide content, targeting, and behavior |
+| Delete | Remove guides from the application |
+| Activate | Enable guide for targeted users |
+| Deactivate | Disable guide from appearing to users |
 
-### Guide
+### 4. Segments
+
 | Operation | Description |
 |-----------|-------------|
-| Get | Retrieve a guide by ID |
-| Get Many | List multiple guides with state/app filters |
-| Create | Create a new guide |
-| Update | Update guide settings (state, name, launch method) |
-| Delete | Delete a guide |
-| Enable | Enable a guide for display |
-| Disable | Disable a guide |
-| Get Steps | Get guide step definitions |
-| Get By Segment | Get guides targeting a specific segment |
-| Get Analytics | Retrieve guide performance analytics |
+| Get | Retrieve segment definition and member count |
+| List | Fetch all segments with metadata |
+| Create | Build new user or account segments |
+| Update | Modify segment rules and criteria |
+| Delete | Remove segments from Pendo |
+| Get Members | Retrieve users or accounts in a segment |
 
-### Segment
+### 5. Events
+
 | Operation | Description |
 |-----------|-------------|
-| Get | Retrieve a segment by ID |
-| Get Many | List multiple segments |
-| Create | Create a new segment with definition rules |
-| Update | Update a segment definition |
-| Delete | Delete a segment |
-| Get Members | Get visitors/accounts in a segment |
-| Get Size | Get segment member count |
-| Clone | Duplicate a segment |
-| Get Guides | Get guides using a segment |
+| Get | Fetch event details and associated data |
+| List | Retrieve events with time range and filtering |
+| Create | Track custom events in Pendo |
+| Query | Run analytics queries on event data |
+| Aggregate | Get summarized event metrics and insights |
 
-### Track Event
+### 6. Features
+
 | Operation | Description |
 |-----------|-------------|
-| Get | Retrieve a track event by ID |
-| Get Many | List multiple track events |
-| Create | Create a new track event definition |
-| Update | Update a track event definition |
-| Delete | Delete a track event |
-| Get Analytics | Get track event metrics |
-| Search | Search track events by criteria |
-
-### Page
-| Operation | Description |
-|-----------|-------------|
-| Get | Retrieve a page by ID |
-| Get Many | List multiple pages |
-| Create | Create a new page tag |
-| Update | Update a page definition |
-| Delete | Delete a page tag |
-| Get Analytics | Get page view metrics |
-| Get Rules | Get page matching rules |
-
-### Feature
-| Operation | Description |
-|-----------|-------------|
-| Get | Retrieve a feature by ID |
-| Get Many | List multiple features |
-| Create | Create a new feature tag |
-| Update | Update a feature definition |
-| Delete | Delete a feature tag |
-| Get Analytics | Get feature click metrics |
-| Get Adoption | Get feature adoption data |
-
-### NPS
-| Operation | Description |
-|-----------|-------------|
-| Get | Retrieve an NPS survey by ID |
-| Get Many | List NPS surveys |
-| Create | Create a new NPS survey |
-| Update | Update an NPS survey |
-| Delete | Delete an NPS survey |
-| Get Responses | Get NPS responses for a survey |
-| Get Analytics | Get NPS score trends |
-| Export Data | Export NPS response data |
-
-### Report
-| Operation | Description |
-|-----------|-------------|
-| Get | Retrieve a report by ID |
-| Get Many | List reports |
-| Create | Create a custom report |
-| Update | Update report configuration |
-| Delete | Delete a report |
-| Run | Execute report and get data |
-| Export | Export report data |
-| Schedule | Set up report schedule |
-
-### Webhook
-| Operation | Description |
-|-----------|-------------|
-| Get | Retrieve a webhook by ID |
-| Get Many | List webhooks |
-| Create | Create a webhook subscription |
-| Update | Update a webhook |
-| Delete | Delete a webhook |
-| Test | Send test payload to webhook |
-| Get Deliveries | Get webhook delivery history |
-
-### Feedback
-| Operation | Description |
-|-----------|-------------|
-| Get | Retrieve a feedback request by ID |
-| Get Many | List feedback requests with status/priority filters |
-| Create | Create a new feedback request |
-| Update | Update a feedback request |
-| Delete | Delete a feedback request |
-| Get Votes | Retrieve votes on a feedback request |
-| Add Vote | Add a vote to a feedback request |
-| Remove Vote | Remove a vote from a feedback request |
-| Get Comments | Get comments on a feedback request |
-| Add Comment | Add a comment to a feedback request |
-| Get Status | Get the status of a feedback request |
-
-## Trigger Node
-
-The Pendo Trigger node listens for webhook events from Pendo:
-
-| Event | Description |
-|-------|-------------|
-| Guide Displayed | Triggered when a guide is displayed to a user |
-| Guide Dismissed | Triggered when a user dismisses a guide |
-| Guide Advanced | Triggered when a user advances in a guide |
-| Poll Response | Triggered when a user responds to a poll |
-| NPS Response | Triggered when a user submits an NPS response |
-| Track Event | Triggered when a custom track event fires |
-| Visitor Identified | Triggered when a new visitor is identified |
-| Segment Entered | Triggered when a visitor enters a segment |
-| Segment Exited | Triggered when a visitor exits a segment |
-
-### Setting Up Webhooks
-
-1. Add a Pendo Trigger node to your workflow
-2. Copy the webhook URL displayed in n8n
-3. Configure the webhook URL in your Pendo settings
-4. Activate the workflow
+| Get | Retrieve feature usage data and analytics |
+| List | Fetch all tracked features with metrics |
+| Create | Add new feature tracking to Pendo |
+| Update | Modify feature properties and grouping |
+| Delete | Remove feature from tracking |
+| Get Usage | Retrieve feature adoption and usage statistics |
 
 ## Usage Examples
 
-### Running a Custom Aggregation
-
-```json
+```javascript
+// Get visitor profile and recent activity
 {
-  "pipeline": [
+  "resource": "visitors",
+  "operation": "get",
+  "visitorId": "visitor_12345",
+  "includeEvents": true,
+  "eventLimit": 50
+}
+```
+
+```javascript
+// Create targeted guide for new users
+{
+  "resource": "guides",
+  "operation": "create",
+  "name": "Welcome Onboarding",
+  "type": "walkthrough",
+  "targeting": {
+    "segment": "new_users",
+    "pages": ["/dashboard"]
+  },
+  "steps": [
     {
-      "source": {
-        "pageEvents": {},
-        "timeSeries": {
-          "period": "dayRange",
-          "first": "1704067200000",
-          "count": -30
-        }
-      }
-    },
-    {
-      "identified": "visitorId"
-    },
-    {
-      "reduce": [
-        { "count": { "count": "visitorId" } }
-      ]
+      "title": "Welcome to the Dashboard",
+      "content": "Let's show you around!"
     }
   ]
 }
 ```
 
-### Creating a Segment
-
-```json
+```javascript
+// Track feature usage event
 {
-  "name": "Active Users Last 30 Days",
-  "definition": {
-    "filter": {
-      "type": "and",
-      "filters": [
-        {
-          "type": "visitor",
-          "lastVisitTime": {
-            "gte": "now-30d"
-          }
-        }
-      ]
-    }
+  "resource": "events",
+  "operation": "create",
+  "type": "feature_used",
+  "visitorId": "visitor_67890",
+  "accountId": "account_abc123",
+  "properties": {
+    "feature_name": "advanced_search",
+    "usage_context": "product_catalog"
   }
 }
 ```
 
-### Updating Visitor Metadata
-
-```json
+```javascript
+// Create dynamic user segment
 {
-  "visitorId": "user-123",
-  "metadata": {
-    "plan": "enterprise",
-    "onboarding_complete": true,
-    "last_feature_used": "dashboard"
+  "resource": "segments",
+  "operation": "create",
+  "name": "Power Users",
+  "type": "visitor",
+  "rule": {
+    "conditions": [
+      {
+        "field": "feature_usage_count",
+        "operator": "greater_than",
+        "value": 10
+      },
+      {
+        "field": "last_login",
+        "operator": "within_days",
+        "value": 7
+      }
+    ]
   }
 }
 ```
-
-## Pendo Concepts
-
-### Aggregation Pipeline
-Pendo's aggregation API uses a pipeline-based query system similar to MongoDB. Each pipeline stage transforms the data:
-- **source**: Defines the data source (pageEvents, featureEvents, etc.) and time range
-- **identified**: Identifies records by a field
-- **group**: Groups records by specified fields
-- **reduce**: Applies aggregation functions (count, sum, average, etc.)
-- **filter**: Filters records based on conditions
-- **sort**: Sorts the results
-
-### Time Series
-Time series in Pendo uses epoch milliseconds and relative counts:
-- `period`: dayRange, hourRange, or minuteRange
-- `first`: Starting timestamp in epoch milliseconds
-- `count`: Number of periods (negative for past, positive for future)
-
-### Guide States
-- **draft**: Guide is being developed
-- **staged**: Guide is ready for testing
-- **public**: Guide is live and visible to users
-- **disabled**: Guide is turned off
 
 ## Error Handling
 
-The node handles common Pendo API errors:
-
-| Error Code | Description |
-|------------|-------------|
-| 400 | Bad Request / Invalid aggregation query |
-| 401 | Unauthorized / Invalid integration key |
-| 403 | Forbidden / Insufficient permissions |
-| 404 | Resource not found |
-| 429 | Rate limited - reduce request frequency |
-| 500 | Server error - retry later |
-
-## Rate Limiting
-
-Pendo's aggregation API is not intended for bulk data export. Best practices:
-- Break up aggregations by time ranges if hitting rate limits
-- Use Data Sync for large data exports
-- Implement exponential backoff for retries
-- Cache results when possible
-
-## Security Best Practices
-
-1. **Secure Credentials**: Store your integration key securely in n8n credentials
-2. **Least Privilege**: Use integration keys with minimal required permissions
-3. **Audit Access**: Regularly review and rotate integration keys
-4. **Validate Webhooks**: Verify webhook signatures when available
-5. **Data Handling**: Be mindful of PII when processing visitor/account data
+| Error | Description | Solution |
+|-------|-------------|----------|
+| Invalid API Key | Authentication failed with provided API key | Verify API key in Pendo Settings > Integrations |
+| Rate Limit Exceeded | Too many API requests in time window | Implement request throttling or retry logic |
+| Resource Not Found | Requested visitor, account, or guide doesn't exist | Check resource ID and ensure it exists in Pendo |
+| Invalid Segment Rules | Segment conditions contain invalid fields or operators | Review segment rule syntax and available fields |
+| Guide Creation Failed | Guide configuration contains invalid properties | Validate guide structure and targeting rules |
+| Insufficient Permissions | API key lacks required permissions for operation | Contact Pendo admin to update API key permissions |
 
 ## Development
 
 ```bash
-# Install dependencies
 npm install
-
-# Build the project
 npm run build
-
-# Watch for changes
-npm run dev
-
-# Run linting
-npm run lint
-
-# Fix linting issues
-npm run lint:fix
-
-# Run tests
 npm test
-
-# Run tests with coverage
-npm run test:coverage
+npm run lint
+npm run dev
 ```
 
 ## Author
@@ -420,29 +240,22 @@ Permitted for personal, educational, research, and internal business use.
 ### Commercial Use
 Use of this node within any SaaS, PaaS, hosted platform, managed service, or paid automation offering requires a commercial license.
 
-For licensing inquiries:
-**licensing@velobpa.com**
+For licensing inquiries: **licensing@velobpa.com**
 
 See [LICENSE](LICENSE), [COMMERCIAL_LICENSE.md](COMMERCIAL_LICENSE.md), and [LICENSING_FAQ.md](LICENSING_FAQ.md) for details.
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+Contributions are welcome! Please ensure:
 
-Please ensure your code follows the existing style and includes appropriate tests.
+1. Code follows existing style conventions
+2. All tests pass (`npm test`)
+3. Linting passes (`npm run lint`)
+4. Documentation is updated for new features
+5. Commit messages are descriptive
 
 ## Support
 
-- **Documentation**: [Pendo Developer Docs](https://developers.pendo.io/docs/)
 - **Issues**: [GitHub Issues](https://github.com/Velocity-BPA/n8n-nodes-pendo/issues)
-- **n8n Community**: [n8n Community Forum](https://community.n8n.io/)
-
-## Acknowledgments
-
-- [Pendo](https://pendo.io) for their product analytics platform
-- [n8n](https://n8n.io) for the workflow automation platform
-- The n8n community for their support and contributions
+- **Pendo API Documentation**: [Pendo Developer Hub](https://developers.pendo.io/)
+- **Pendo Community**: [Pendo Community Forum](https://community.pendo.io/)
