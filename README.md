@@ -8,25 +8,25 @@
 >
 > For licensing information, visit https://velobpa.com/licensing or contact licensing@velobpa.com.
 
-This n8n community node integrates with Pendo's product analytics platform, providing access to 6 core resources including Visitors, Accounts, Guides, Segments, Events, and Features. Automate user behavior tracking, manage product guides, analyze feature adoption, and streamline your product analytics workflows directly within n8n.
+This n8n community node provides seamless integration with Pendo's product analytics and user guidance platform. With 7 comprehensive resources, it enables product teams to automate user behavior tracking, guide management, and product analytics workflows directly within their n8n automations.
 
 ![n8n Community Node](https://img.shields.io/badge/n8n-Community%20Node-blue)
 ![License](https://img.shields.io/badge/license-BSL--1.1-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)
-![Pendo API](https://img.shields.io/badge/Pendo-API%20v1-orange)
-![Product Analytics](https://img.shields.io/badge/Product-Analytics-purple)
-![User Experience](https://img.shields.io/badge/User-Experience-green)
+![Product Analytics](https://img.shields.io/badge/Product-Analytics-orange)
+![User Guidance](https://img.shields.io/badge/User-Guidance-green)
+![Pendo API](https://img.shields.io/badge/Pendo-API-purple)
 
 ## Features
 
-- **Visitor Management** - Track user behavior, retrieve visitor profiles, and analyze user journey data
-- **Account Operations** - Manage customer accounts, update account metadata, and segment organizations
-- **Guide Automation** - Create, update, and manage in-app guides and onboarding flows
-- **Segmentation Control** - Build dynamic user segments based on behavior and attributes
-- **Event Tracking** - Capture custom events and monitor feature usage patterns
-- **Feature Analytics** - Track feature adoption, usage metrics, and performance insights
-- **Real-time Data** - Access live product analytics data for immediate insights
-- **Batch Operations** - Process multiple records efficiently with bulk operations support
+- **Complete Account Management** - Create, update, retrieve, and delete user accounts with comprehensive metadata
+- **Visitor Behavior Tracking** - Monitor and analyze individual visitor interactions and product usage patterns
+- **Guide Orchestration** - Automate in-app guide creation, publishing, and targeting for user onboarding
+- **Event Analytics** - Track custom events and user actions for detailed product analytics insights
+- **Feature Usage Monitoring** - Analyze feature adoption and usage metrics across your product
+- **Page Analytics** - Monitor page views, engagement, and user journey analytics
+- **Segment Management** - Create and manage user segments for targeted experiences and analytics
+- **Real-time Data Sync** - Seamlessly integrate Pendo data with your existing automation workflows
 
 ## Installation
 
@@ -61,144 +61,145 @@ n8n start
 
 | Field | Description | Required |
 |-------|-------------|----------|
-| API Key | Your Pendo API integration key from Pendo Settings > Integrations | Yes |
-| Subscription ID | Your Pendo subscription identifier (found in account settings) | Yes |
-| Environment | Target environment (production/staging) | No |
+| API Key | Your Pendo API key from Settings > Integrations > Integration Keys | Yes |
 
 ## Resources & Operations
 
-### 1. Visitors
+### 1. Account
 
 | Operation | Description |
 |-----------|-------------|
-| Get | Retrieve visitor profile and activity data |
-| List | Fetch multiple visitors with filtering options |
-| Update | Modify visitor metadata and custom attributes |
-| Delete | Remove visitor data from Pendo |
-| Get Events | Retrieve events associated with a visitor |
+| Create | Create a new account with metadata and properties |
+| Get | Retrieve account details by account ID |
+| Update | Update existing account information and metadata |
+| Delete | Remove an account from Pendo |
+| List | Get all accounts with optional filtering |
 
-### 2. Accounts
-
-| Operation | Description |
-|-----------|-------------|
-| Get | Fetch account details and associated metadata |
-| List | Retrieve multiple accounts with pagination |
-| Create | Add new account to Pendo tracking |
-| Update | Modify account properties and segmentation data |
-| Delete | Remove account from Pendo system |
-
-### 3. Guides
+### 2. Visitor
 
 | Operation | Description |
 |-----------|-------------|
-| Get | Retrieve guide configuration and performance data |
-| List | Fetch all guides with filtering by status or type |
-| Create | Build new in-app guides and onboarding flows |
-| Update | Modify guide content, targeting, and behavior |
-| Delete | Remove guides from the application |
-| Activate | Enable guide for targeted users |
-| Deactivate | Disable guide from appearing to users |
+| Create | Create a new visitor profile with user attributes |
+| Get | Retrieve visitor information by visitor ID |
+| Update | Update visitor properties and metadata |
+| Delete | Remove a visitor from Pendo |
+| List | Get all visitors with filtering options |
+| Get Events | Retrieve events associated with a specific visitor |
 
-### 4. Segments
-
-| Operation | Description |
-|-----------|-------------|
-| Get | Retrieve segment definition and member count |
-| List | Fetch all segments with metadata |
-| Create | Build new user or account segments |
-| Update | Modify segment rules and criteria |
-| Delete | Remove segments from Pendo |
-| Get Members | Retrieve users or accounts in a segment |
-
-### 5. Events
+### 3. Guide
 
 | Operation | Description |
 |-----------|-------------|
-| Get | Fetch event details and associated data |
-| List | Retrieve events with time range and filtering |
-| Create | Track custom events in Pendo |
-| Query | Run analytics queries on event data |
-| Aggregate | Get summarized event metrics and insights |
+| Create | Create a new in-app guide with steps and targeting |
+| Get | Retrieve guide details by guide ID |
+| Update | Modify guide content, targeting, or settings |
+| Delete | Remove a guide from Pendo |
+| List | Get all guides with status and type filtering |
+| Publish | Publish a guide to make it active |
+| Unpublish | Deactivate a published guide |
 
-### 6. Features
+### 4. Event
 
 | Operation | Description |
 |-----------|-------------|
-| Get | Retrieve feature usage data and analytics |
-| List | Fetch all tracked features with metrics |
-| Create | Add new feature tracking to Pendo |
-| Update | Modify feature properties and grouping |
-| Delete | Remove feature from tracking |
-| Get Usage | Retrieve feature adoption and usage statistics |
+| Track | Send custom events to Pendo for analytics |
+| Get | Retrieve event details by event ID |
+| List | Get events with date range and filtering |
+| Aggregate | Get aggregated event data and metrics |
+
+### 5. Feature
+
+| Operation | Description |
+|-----------|-------------|
+| Create | Define a new feature for tracking |
+| Get | Retrieve feature information and usage data |
+| Update | Modify feature properties and settings |
+| Delete | Remove a feature from tracking |
+| List | Get all features with usage statistics |
+| Get Usage | Retrieve detailed usage analytics for a feature |
+
+### 6. Page
+
+| Operation | Description |
+|-----------|-------------|
+| Create | Register a new page for tracking |
+| Get | Retrieve page details and analytics |
+| Update | Modify page properties and metadata |
+| Delete | Remove a page from tracking |
+| List | Get all tracked pages with analytics |
+| Get Analytics | Retrieve detailed page analytics and metrics |
+
+### 7. Segment
+
+| Operation | Description |
+|-----------|-------------|
+| Create | Create a new user segment with criteria |
+| Get | Retrieve segment details and member count |
+| Update | Modify segment criteria and properties |
+| Delete | Remove a segment from Pendo |
+| List | Get all segments with statistics |
+| Get Members | Retrieve users in a specific segment |
 
 ## Usage Examples
 
 ```javascript
-// Get visitor profile and recent activity
+// Create a new account with metadata
 {
-  "resource": "visitors",
-  "operation": "get",
-  "visitorId": "visitor_12345",
-  "includeEvents": true,
-  "eventLimit": 50
-}
-```
-
-```javascript
-// Create targeted guide for new users
-{
-  "resource": "guides",
-  "operation": "create",
-  "name": "Welcome Onboarding",
-  "type": "walkthrough",
-  "targeting": {
-    "segment": "new_users",
-    "pages": ["/dashboard"]
-  },
-  "steps": [
-    {
-      "title": "Welcome to the Dashboard",
-      "content": "Let's show you around!"
-    }
-  ]
-}
-```
-
-```javascript
-// Track feature usage event
-{
-  "resource": "events",
-  "operation": "create",
-  "type": "feature_used",
-  "visitorId": "visitor_67890",
-  "accountId": "account_abc123",
-  "properties": {
-    "feature_name": "advanced_search",
-    "usage_context": "product_catalog"
+  "accountId": "acct_12345",
+  "metadata": {
+    "company": "Acme Corp",
+    "plan": "enterprise",
+    "mrr": 5000,
+    "employees": 150
   }
 }
 ```
 
 ```javascript
-// Create dynamic user segment
+// Track a custom event for user analytics
 {
-  "resource": "segments",
-  "operation": "create",
-  "name": "Power Users",
-  "type": "visitor",
-  "rule": {
-    "conditions": [
-      {
-        "field": "feature_usage_count",
-        "operator": "greater_than",
-        "value": 10
-      },
-      {
-        "field": "last_login",
-        "operator": "within_days",
-        "value": 7
-      }
-    ]
+  "visitorId": "user_67890",
+  "accountId": "acct_12345",
+  "event": "feature_used",
+  "properties": {
+    "feature_name": "advanced_reporting",
+    "session_duration": 1200,
+    "clicks": 5
+  }
+}
+```
+
+```javascript
+// Create a targeted in-app guide
+{
+  "name": "Onboarding Guide - New Users",
+  "steps": [
+    {
+      "type": "tooltip",
+      "element": "#welcome-button",
+      "content": "Welcome! Click here to get started."
+    }
+  ],
+  "targeting": {
+    "segment": "new_users",
+    "url_rules": ["/dashboard"]
+  }
+}
+```
+
+```javascript
+// Create a user segment for targeting
+{
+  "name": "High Value Customers",
+  "criteria": {
+    "account.metadata.mrr": {
+      "operator": "gte",
+      "value": 1000
+    },
+    "visitor.metadata.last_login": {
+      "operator": "within_days",
+      "value": 7
+    }
   }
 }
 ```
@@ -207,12 +208,12 @@ n8n start
 
 | Error | Description | Solution |
 |-------|-------------|----------|
-| Invalid API Key | Authentication failed with provided API key | Verify API key in Pendo Settings > Integrations |
-| Rate Limit Exceeded | Too many API requests in time window | Implement request throttling or retry logic |
-| Resource Not Found | Requested visitor, account, or guide doesn't exist | Check resource ID and ensure it exists in Pendo |
-| Invalid Segment Rules | Segment conditions contain invalid fields or operators | Review segment rule syntax and available fields |
-| Guide Creation Failed | Guide configuration contains invalid properties | Validate guide structure and targeting rules |
-| Insufficient Permissions | API key lacks required permissions for operation | Contact Pendo admin to update API key permissions |
+| 401 Unauthorized | Invalid or missing API key | Verify API key in credentials configuration |
+| 403 Forbidden | Insufficient permissions for operation | Check API key permissions in Pendo settings |
+| 404 Not Found | Resource (account, visitor, guide) doesn't exist | Verify resource ID exists before operation |
+| 429 Rate Limited | Too many API requests | Implement delays between requests or use bulk operations |
+| 400 Bad Request | Invalid data format or missing required fields | Validate input data format and required fields |
+| 500 Internal Server Error | Pendo service temporarily unavailable | Retry operation after delay or check Pendo status |
 
 ## Development
 
@@ -257,5 +258,5 @@ Contributions are welcome! Please ensure:
 ## Support
 
 - **Issues**: [GitHub Issues](https://github.com/Velocity-BPA/n8n-nodes-pendo/issues)
-- **Pendo API Documentation**: [Pendo Developer Hub](https://developers.pendo.io/)
-- **Pendo Community**: [Pendo Community Forum](https://community.pendo.io/)
+- **Pendo API Documentation**: [Pendo Developer Center](https://developers.pendo.io/)
+- **Pendo Community**: [Pendo Product Community](https://community.pendo.io/)
